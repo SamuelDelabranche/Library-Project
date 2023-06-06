@@ -1,0 +1,70 @@
+""" Fichier permettant de faire le lien entre les choix et les fonctionnalités des commandes """
+
+# ------------------ Librairie ------------------
+
+import time
+from biblio import commandes
+from biblio.bibliotheque import Bibliotheque
+from biblio.commandes import path,temps_attente
+
+
+def main():
+	""" Fonction permettant de réaliser les choix de l'utilisateur """
+
+	print("-" * 60)
+	print("PROJET BIBLIOTHEQUE".center(60))
+	print("-" * 60)
+
+	biblio = Bibliotheque()
+	commandes.chargement(biblio)
+	commandes.affiche_menu()
+	end = False	# Tant qu'il est False, le programme fonctionnera
+
+
+	print("\nVoici les commandes d'utilisation :\n ")
+
+	# Tant que le choix n'est pas "Q", le programme fonctionnera
+	while not end:
+		answer = str(input('\nEntrez votre commande (M pour afficher le menu): ').upper())
+	
+		if answer == "Q":
+			print("\nSauvegarde du fichier de sauvegarde",end="")
+			temps_attente()
+			time.sleep(1)
+			print(f"\nLe fichier de sauvegarde a bien été enregistré dans le répertoire suivant : {path}")
+			print("Vous avez quitté le programme.")
+			end = True
+
+		elif answer == "M":
+			commandes.affiche_menu()
+
+		elif answer == "LG":
+			commandes.afficher_genre(biblio)
+
+		elif answer == "LL":
+			commandes.afficher_livre(biblio)
+
+		elif answer == "NG":
+			commandes.genre_ajout(biblio, input("Entrez le nom du genre: "))
+			commandes.sauvegarde(biblio)
+
+		elif answer == "NL":
+			commandes.livre_ajout_trie(biblio, input("Entrez le titre du livre :  "))
+			commandes.sauvegarde(biblio)
+
+		elif answer == "SG":
+			commandes.supprimer_genre(biblio, input("Entrez le nom du genre à supprimer : "))
+			commandes.sauvegarde(biblio)
+   
+		elif answer == "SL":
+			commandes.supprimer_livre(biblio, input("Entrez le titre du livre : "))
+			commandes.sauvegarde(biblio)
+
+		elif answer == "RB":
+			commandes.renitialisation_biblio(biblio)
+   
+		else:
+			print("Commande invalide, veuillez réessayer!")
+        
+if __name__ == '__main__': # Permet d'utiliser ce qu'il y a l'intérieur directement à l'execution
+    main()
