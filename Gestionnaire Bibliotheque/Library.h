@@ -12,6 +12,7 @@ class Library {
 	
 	public:
 		void addBook(Book *newBook);
+		void showBooks() const;
 
 };
 

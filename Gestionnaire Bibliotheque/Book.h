@@ -3,8 +3,11 @@
 #define DEF_BOOK
 
 #include <string>
+#include <iostream>
 
 class Book{
+	friend std::ostream& operator<<(std::ostream& flux, Book const& book);
+
 	public:
 		// Concructor 
 		Book(std::string name, std::string author, std::string date = "None", double price = 0);
@@ -16,5 +19,6 @@ class Book{
 		std::string m_date;
 		double m_price;
 };
+
 
 #endif // !DEF_BOOK

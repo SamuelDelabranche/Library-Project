@@ -13,3 +13,13 @@ Book::Book(std::string name, std::string author, std::string date, double price)
 	cout << "Date of creation: " << m_date << endl;
 	cout << "Price: $" << m_price << endl;
 }
+
+
+ostream &operator<<(ostream& flux, Book const& book) {
+	flux << book.m_name << endl;
+	flux << "   Author: " << book.m_author << endl;
+	flux << "   Date: " << book.m_date << endl;
+	flux << "   Price: $" << book.m_price << endl;
+
+	return flux;
+}

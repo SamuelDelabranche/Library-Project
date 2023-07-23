@@ -21,28 +21,9 @@ void loadingText(const int& time) {
 	for (int i(0); i < 3; i++) {
 		Sleep(time * 1000);
 		cout << ".";
-
 	}
 }
 
-void showGUI(bool error = false, int errorCode = -1) {
-
-	clearCommandByOs();
-
-	if (error) { cout << "Fonctionality not included! [" << errorCode << "]" << endl; } // if Error, it show this line
-
-	// GUI
-	cout << "###- Library Project -###" << endl;
-	cout << "[1] Add Book " << endl;
-	cout << "[2] Remove Book " << endl;
-	cout << "[3] Show Book {With name}" << endl;
-	cout << "[4] Show all Books " << endl;
-	cout << "[0] Quit the program " << endl;
-	cout << endl;
-	
-	
-
-}
 
 Book* createBook() {
 	clearCommandByOs();
@@ -83,6 +64,25 @@ Book* createBook() {
 	return newBook;
 }
 
+void showGUI(bool error = false, int errorCode = -1) {
+
+	clearCommandByOs();
+
+	if (error) { cout << "Fonctionality not included! [" << errorCode << "]" << endl; } // if Error, it show this line
+
+	// GUI
+	cout << "###- Library Project -###" << endl;
+	cout << "[1] Add Book " << endl;
+	cout << "[2] Remove Book " << endl;
+	cout << "[3] Show Book {With name}" << endl;
+	cout << "[4] Show all Books " << endl;
+	cout << "[0] Quit the program " << endl;
+	cout << endl;
+
+
+
+}
+
 int main() {
 	int choice;
 	showGUI();
@@ -113,6 +113,15 @@ int main() {
 			break;
 
 		case 4:
+			clearCommandByOs();
+			mainLibrary.showBooks();
+
+			char temp;
+			cout << endl << "Continue [enter any char]: ";
+			cin >> temp;
+
+			clearCommandByOs();
+			showGUI();
 
 			break;
 		}
