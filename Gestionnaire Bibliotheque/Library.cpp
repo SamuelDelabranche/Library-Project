@@ -15,10 +15,20 @@ void Library::addBook(Book *newBook) {
 	
 }
 
-void Library::showBooks() const {
-	for (const Book *element : this->listBook) {
-		cout << *element << endl;
-	}
+void Library::showBooks(string const &name) const {
+    if (!name.empty() && name != "None") { // if name is not empty
+        for (const Book* element : this->listBook) {
+            if (element->getName() == name) {
+                cout << *element << endl;
+            }
+        }
+    }
+    else {
+        for (const Book* element : this->listBook) {
+            cout << *element << endl;
+        }
+    }
+
 }
 
 int Library::removeBook(const string& name) {

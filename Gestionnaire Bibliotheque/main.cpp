@@ -76,7 +76,8 @@ void showGUI(bool error = false, int errorCode = -1) {
 }
 
 int main() {
-	string tempNameRemove;
+	string tempNameRemove, showByName;
+	char temp;
 	int choice;
 	showGUI();
 
@@ -117,14 +118,25 @@ int main() {
 
 			break;
 		case 3: // Show books by their name
+			clearCommandByOs();
+
+
+			cout << "Search by Name: ";
+			cin.ignore();
+			getline(cin, showByName);
+
+			mainLibrary.showBooks(showByName);
+
+			cout << endl << "Continue [enter any char]: ";
+			cin >> temp;
+
+			clearCommandByOs();
+			showGUI();
 
 			break;
 
 		case 4: // Show all books
 			clearCommandByOs();
-			
-
-			char temp;
 
 			if (mainLibrary.getBooksize() == 0) { cout << "The Library is empty"; }
 			else { mainLibrary.showBooks(); }

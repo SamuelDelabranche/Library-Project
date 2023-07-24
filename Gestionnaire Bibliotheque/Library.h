@@ -17,8 +17,8 @@ class Library {
 		void addBook(Book *newBook);
 		int removeBook(const std::string& name);
 
-		void showBooks() const;
-		bool checkBook(std::string const& name = "None") const;
+		void showBooks(std::string const &name = "None") const;
+		bool checkBook(std::string const &name = "None") const;
 
 };
 
