@@ -23,3 +23,7 @@ ostream &operator<<(ostream& flux, Book const& book) {
 
 	return flux;
 }
+
+string Book::getName() const{
+	return this->m_name;
+}

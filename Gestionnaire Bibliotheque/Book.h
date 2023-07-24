@@ -11,6 +11,7 @@ class Book{
 	public:
 		// Concructor 
 		Book(std::string name, std::string author, std::string date = "None", double price = 0);
+		std::string getName() const;
 
 	private:
 		// Attributes
@@ -18,6 +19,7 @@ class Book{
 		std::string m_author;
 		std::string m_date;
 		double m_price;
+
 };
 
 

@@ -16,13 +16,6 @@ void clearCommandByOs() { // Clear terminal depending of the os
 	#endif
 }
 
-void loadingText(const int& time) {
-	cout << "Loading";
-	for (int i(0); i < 3; i++) {
-		Sleep(time * 1000);
-		cout << ".";
-	}
-}
 
 
 Book* createBook() {
@@ -60,7 +53,6 @@ Book* createBook() {
 
 	clearCommandByOs();
 	Book* newBook = new Book(name, author, date, price); // create new Book
-	loadingText(2); // Make 3 '.' in 6secs
 	return newBook;
 }
 
@@ -84,6 +76,7 @@ void showGUI(bool error = false, int errorCode = -1) {
 }
 
 int main() {
+	string tempNameRemove;
 	int choice;
 	showGUI();
 
@@ -101,22 +94,41 @@ int main() {
 			showGUI(true, choice);
 			break;
 
-		case 1:
+		case 1: // Add a book
 			mainLibrary.addBook(createBook());
 			clearCommandByOs();
 			showGUI();
 
 			break;
-		case 2:
+		case 2: // Remove book by his name
+			clearCommandByOs();
+
+			cout << "Name: ";
+			cin.ignore(); // Clear the input buffer to avoid issues.
+			getline(cin, tempNameRemove); // Take all the line ( with space ) 
+
+			// If book in library
+			if (mainLibrary.checkBook(tempNameRemove)) { cout << "Count of books removed: " << mainLibrary.removeBook(tempNameRemove); }
+			else { cout << "No book [" << tempNameRemove << "] was found! "; }
+
+			Sleep(2000); // Wait 2s to see the response
+			clearCommandByOs();
+			showGUI();
+
 			break;
-		case 3:
+		case 3: // Show books by their name
+
 			break;
 
-		case 4:
+		case 4: // Show all books
 			clearCommandByOs();
-			mainLibrary.showBooks();
+			
 
 			char temp;
+
+			if (mainLibrary.getBooksize() == 0) { cout << "The Library is empty"; }
+			else { mainLibrary.showBooks(); }
+
 			cout << endl << "Continue [enter any char]: ";
 			cin >> temp;
 
